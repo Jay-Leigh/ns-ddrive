@@ -14,7 +14,7 @@ The repository is currently in its governed foundation stage. Application scaffo
 
 Runtime targets are recorded in the repository. Frozen JavaScript and Python locks will be generated and verified when the corresponding application manifests are introduced.
 
-For the local PostgreSQL service, copy `.env.example` to an untracked `.env`, replace the local-only password, and run `docker compose up -d postgres`. The service binds only to loopback by default. If another local database such as InfluenceHub already uses port 5432, set `POSTGRES_PORT` in the NorthStar `.env` to an available local port.
+For the local PostgreSQL service, copy `.env.example` to an untracked `.env`, replace the local-only password, and run `docker compose up -d postgres`. The service binds only to loopback on host port 5433 by default so it does not conflict with InfluenceHub on port 5432. Set `POSTGRES_PORT` in the NorthStar `.env` if a different local port is required.
 
 ## Governing context
 
