@@ -332,6 +332,7 @@ Do not activate a Deferred item merely because it is common in other systems.
 - `NorthStar_Architecture_Decision_Register.md` — Accepted checkpoint and governing decision register.
 - `NorthStar_Foundation_ADR_Pack.zip` — 13 repository-ready Proposed foundation ADRs.
 - `NorthStar_Project_Seed.md` — this active implementation handoff; it supersedes the old BIG seed.
+- `BIG_Frontend_Architecture_and_Development_Standards.md` — Proposed frontend standard derived from the accepted register; formal review remains.
 - BIG Git/release documents incorporated into the repository:
   - `docs/agile/deliverables/internal/BIG Git and Release Implementation Guide.md`
   - `docs/agile/deliverables/internal/BIG October 2026 Release Plan.md`
@@ -345,7 +346,7 @@ Do not activate a Deferred item merely because it is common in other systems.
 5. ~~Add root README, ignore rules, contribution guidance, CODEOWNERS and ownership notices.~~ **Completed 27 August 2026.**
 6. Configure pinned runtimes, pnpm workspace, `uv`, locks and local PostgreSQL tooling. **Runtime targets, pnpm/Turborepo workspace boundaries, frozen JavaScript lock and local PostgreSQL Compose configuration added 27 August 2026. Python 3.14.7 and `uv` 0.12.6 were installed locally, and PostgreSQL 18.4 was verified in an isolated container. Local Node remains 22.16.0 pending an administrator-approved upgrade to 24.20.0; the exact Node target is verified in CI. The Python lock remains implementation-triggered until the backend manifest exists.**
 7. Establish formatting, linting, typing, secret detection and test foundations.
-8. Write the BIG Frontend Architecture and Development Standards.
+8. Write the BIG Frontend Architecture and Development Standards. **Proposed repository draft completed 27 August 2026; formal review and acceptance remain.**
 9. Create the API contract register and first J0–J1 contracts.
 10. Scaffold the three applications without feature business logic.
 11. Establish CI, protected branches and preview/develop environments.
