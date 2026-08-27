@@ -16,7 +16,7 @@ services:
       retries: 10
       start_period: 10s
     volumes:
-      - northstar-postgres-data:/var/lib/postgresql/data
+      - northstar-postgres-data:/var/lib/postgresql
     restart: unless-stopped
 
 volumes:
