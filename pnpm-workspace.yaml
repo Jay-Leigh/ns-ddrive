@@ -1,0 +1,5 @@
+packages:
+  - "apps/big-staff-frontend"
+  - "apps/big-client-review"
+  - "big-packages/*"
+  - "cs-packages/*"

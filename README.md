@@ -4,6 +4,18 @@ NorthStar is the BIG-owned monorepo for the BIG operational platform. It contain
 
 The repository is currently in its governed foundation stage. Application scaffolding has not started.
 
+## Foundation prerequisites
+
+- Node.js `24.20.0`
+- pnpm `11.23.0`
+- Python `3.14.7`
+- `uv` for Python dependency and workspace management
+- Docker with Compose support
+
+Runtime targets are recorded in the repository. Frozen JavaScript and Python locks will be generated and verified when the corresponding application manifests are introduced.
+
+For the local PostgreSQL service, copy `.env.example` to an untracked `.env`, replace the local-only password, and run `docker compose up -d postgres`. The service binds only to loopback by default.
+
 ## Governing context
 
 Read these sources in order before architecture or implementation work:
@@ -35,4 +47,3 @@ northstar/
 ```
 
 Do not scaffold major framework, security, data or infrastructure choices without authorization from the accepted decision register or an applicable Accepted ADR.
-
