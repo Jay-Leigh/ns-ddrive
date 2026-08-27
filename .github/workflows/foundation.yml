@@ -1,0 +1,65 @@
+name: Foundation checks
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+      - "release/**"
+  push:
+    branches:
+      - main
+      - develop
+      - "release/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: foundation-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-governance:
+    name: Repository governance
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
+      - name: Verify required governance files
+        shell: bash
+        run: |
+          required=(
+            README.md
+            CONTRIBUTING.md
+            .gitignore
+            .gitattributes
+            .github/CODEOWNERS
+            .github/pull_request_template.md
+            .agents/standards/Git\ Workflow\ SOP.md
+            docs/architecture/NorthStar_Architecture_Decision_Register.md
+            docs/project/NorthStar_Project_Seed.md
+            docs/agile/deliverables/internal/BIG\ Git\ and\ Release\ Implementation\ Guide.md
+            docs/agile/deliverables/internal/BIG\ October\ 2026\ Release\ Plan.md
+          )
+
+          for path in "${required[@]}"; do
+            test -f "$path" || { echo "Missing required file: $path"; exit 1; }
+          done
+
+      - name: Check whitespace errors
+        shell: bash
+        run: git show --check --oneline --no-renames HEAD
+
+      - name: Detect committed private keys
+        shell: bash
+        run: |
+          if git grep -nE -- '-----BEGIN (RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----' -- ':!.github/workflows/foundation.yml'; then
+            echo "A private-key marker was found in tracked content."
+            exit 1
+          fi
