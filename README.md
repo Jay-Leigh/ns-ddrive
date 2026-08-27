@@ -52,6 +52,8 @@ Read these sources in order before architecture or implementation work:
 2. [NorthStar Project Seed](docs/project/NorthStar_Project_Seed.md)
 3. Relevant [Architecture Decision Records](docs/architecture/decisions/README.md)
 
+See the [NorthStar Technical Glossary](docs/project/NorthStar_Technical_Glossary.md) for recurring abbreviations and specialist terms used in project documentation.
+
 Git and release work is governed by:
 
 - [Department Git Workflow SOP](.agents/standards/Git%20Workflow%20SOP.md)

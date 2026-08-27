@@ -1,8 +1,9 @@
 # BIG Frontend Architecture and Development Standards
 
 **Project:** BIG Platform / Project NorthStar
-**Status:** Proposed
+**Status:** Accepted
 **Date:** 27 August 2026
+**Accepted:** 27 August 2026 by Mkhuphuli, Tech Lead
 **Owner:** Frontend lead
 **Reviewers:** Tech Lead; backend lead; security owner; QA lead; product owner
 **Authority:** Accepted NorthStar Architecture Decision Register and applicable Accepted ADRs
@@ -38,11 +39,11 @@ apps/
 
 ### 3.1 Staff frontend
 
-`big-staff-frontend` serves authorized internal staff. It uses normal business routes without a redundant `/staff` prefix. Its initial capability areas include clients, brands, projects, recruitment, filtering, survey operations and ingestion, CRM profiles, vetting, internal approval, fulfilment, moderation summaries and audit/change history.
+`big-staff-frontend` serves authorized internal staff. It uses normal business routes without a redundant `/staff` prefix. Its initial capability areas include clients, brands, projects, recruitment, filtering, survey operations and ingestion, customer relationship management (CRM) profiles, vetting, internal approval, fulfilment, moderation summaries and audit/change history.
 
 ### 3.2 Client-review frontend
 
-`big-client-review` serves invited client reviewers through dedicated routes such as `/reviews/{review_id}`. It receives only client-safe DTOs and operations appropriate to the invitation and review scope.
+`big-client-review` serves invited client reviewers through dedicated routes such as `/reviews/{review_id}`. It receives only client-safe data transfer objects (DTOs) and operations appropriate to the invitation and review scope.
 
 It must never receive:
 
@@ -50,7 +51,7 @@ It must never receive:
 - internal comments or unrestricted CRM data;
 - unvetted candidates;
 - AI diagnostics or validator rules;
-- ICM notes;
+- Influencer Community Management (ICM) notes;
 - other projects or client accounts; or
 - internal workflow controls.
 
@@ -61,10 +62,10 @@ The applications have separate:
 - deployments and domains;
 - Firebase projects per environment;
 - sessions and cookies;
-- BFF boundaries and middleware;
+- backend-for-frontend (BFF) boundaries and middleware;
 - backend services;
 - Cloud Armor policies;
-- CSPs; and
+- Content Security Policies (CSPs); and
 - staff and client-review OpenAPI specifications.
 
 They do not share a runtime, session or middleware boundary. Shared packages may provide contracts and visual consistency, but may not collapse the trust boundary. Neither application embeds the other with an iframe.
@@ -141,7 +142,7 @@ Rules:
 - Do not use non-null assertions to bypass a missing-state decision.
 - Components have one clear responsibility and explicit props.
 - Prefer composition over mode-heavy components with many unrelated boolean props.
-- Use semantic HTML before adding ARIA.
+- Use semantic HTML before adding Accessible Rich Internet Applications (ARIA) attributes.
 - Do not introduce module-level mutable state for request- or user-specific data.
 - Never place secrets, unrestricted personal data or authoritative permissions in client bundles.
 
@@ -223,21 +224,21 @@ FastAPI remains the authoritative business backend. The BFF is not a second back
 
 - Firebase Authentication with Identity Platform capabilities.
 - Dedicated staff Firebase project per environment.
-- Mandatory TOTP authenticator-app MFA.
+- Mandatory time-based one-time password (TOTP) authenticator-app multi-factor authentication (MFA).
 - `HttpOnly`, `Secure` session cookie.
 - Initial 30-minute inactivity and 10-hour absolute session limits.
 
 ### 10.2 Client review
 
 - Separate client-review Firebase project per environment.
-- Invite-only passwordless OTP or magic-link authentication.
+- Invite-only passwordless one-time password (OTP) or magic-link authentication.
 - Separate cookie and session boundary.
 - Initial 30-minute inactivity and 4-hour absolute session limits.
 
 ### 10.3 Common controls
 
 - Never store ID tokens in browser local storage.
-- Apply explicit CSRF tokens plus Origin/Referer, content-type and unsafe-method controls.
+- Apply explicit Cross-Site Request Forgery (CSRF) tokens plus Origin/Referer, content-type and unsafe-method controls.
 - Require authentication no older than 15 minutes for sensitive actions.
 - Never trust browser-supplied roles, organization IDs or project IDs.
 - Identity proves the subject; PostgreSQL-backed assignments authorize business access.
@@ -262,7 +263,7 @@ Proposed/Confirmed contract register
 - Server/BFF code consumes generated clients.
 - Feature TanStack Query hooks call BFF operations.
 - Never manually edit generated code.
-- CI fails when generated artifacts are stale.
+- Continuous integration (CI) fails when generated artifacts are stale.
 - Use `/api/v1` major URL versioning.
 - Version domain events independently from HTTP APIs.
 
@@ -320,7 +321,7 @@ Generated code, migrations and configuration-only files may be excluded from cov
 - Do not put personal information in URLs, analytics labels or metric dimensions.
 - Record safe operation names, outcomes, latency and stable error codes.
 - Client-visible error messages are actionable without revealing internal security detail.
-- GCP-native observability is the initial baseline. An external provider remains Deferred until a documented gap exists.
+- Google Cloud Platform (GCP)-native observability is the initial baseline. An external provider remains Deferred until a documented gap exists.
 
 ## 16. Feature flags
 
@@ -340,7 +341,7 @@ An external feature-flag provider remains Deferred until internal governance is 
 ## 17. Security headers and browser controls
 
 - Each frontend has its own strict CSP using nonces or hashes where appropriate.
-- Apply HSTS and appropriate security headers at the frontend or edge boundary.
+- Apply HTTP Strict Transport Security (HSTS) and appropriate security headers at the frontend or edge boundary.
 - Staff and client frontends use separate cookies with the narrowest domain and path practical.
 - Authenticated responses default to private/no-store unless an explicit safe caching design permits otherwise.
 - Do not expose direct private-backend addresses or credentials to the browser.
@@ -355,7 +356,7 @@ An external feature-flag provider remains Deferred until internal governance is 
 - Avoid request waterfalls by composing server data needs and prefetching intentionally.
 - Keep client bundles small by limiting Client Component boundaries and third-party code.
 - Use images, fonts and dynamic imports intentionally and measure material routes.
-- Polling is the initial freshness mechanism where needed. SSE and WebSockets remain Deferred until their recorded triggers occur.
+- Polling is the initial freshness mechanism where needed. Server-Sent Events (SSE) and WebSockets remain Deferred until their recorded triggers occur.
 
 ## 19. Design-system admission
 
@@ -368,7 +369,7 @@ An external feature-flag provider remains Deferred until internal governance is 
 - no trust-zone-specific data behavior; and
 - reviewed ownership.
 
-This standard does not choose an unconfirmed styling framework. That decision is made before design-system or application styling scaffolding if the accepted architecture sources do not already determine it.
+This standard does not choose a styling framework. That decision remains unresolved and must be separately authorized and recorded before design-system or application styling scaffolding.
 
 ## 20. Quality gates and delivery
 
@@ -394,7 +395,7 @@ Merge does not equal release. Client UAT does not equal production approval. Rel
 
 Do not introduce the following without their recorded trigger and review:
 
-- organization SSO;
+- organization single sign-on (SSO);
 - remote Turborepo caching;
 - Redis or another shared cache;
 - PgBouncer;
@@ -406,9 +407,9 @@ Do not introduce the following without their recorded trigger and review:
 - an external feature-flag provider; or
 - a generic `@big/core` or `@cs/shared` package.
 
-## 22. Review checklist
+## 22. Acceptance review
 
-Before this standard becomes Accepted, reviewers must confirm:
+The acceptance review confirmed:
 
 - application and trust-zone boundaries match the accepted register;
 - no staff/client runtime or session sharing is implied;
@@ -416,7 +417,7 @@ Before this standard becomes Accepted, reviewers must confirm:
 - authentication, CSRF and contract rules are implementable with the selected Next.js baseline;
 - disclosure, accessibility, testing and release gates are sufficient;
 - Deferred choices remain deferred; and
-- any styling-framework decision required for scaffolding is separately authorized and recorded.
+- the styling-framework decision remains unresolved and requires separate authorization before design-system or application styling scaffolding.
 
 ## 23. Review triggers
 
