@@ -14,6 +14,34 @@ The repository is currently in its governed foundation stage. Application scaffo
 
 Runtime targets are recorded in the repository. Frozen JavaScript and Python locks will be generated and verified when the corresponding application manifests are introduced.
 
+### Windows Node.js setup
+
+Use [nvm-windows](https://github.com/coreybutler/nvm-windows) to keep NorthStar's Node.js version isolated from projects that still use Node.js 22.
+
+1. Record any globally installed npm packages with `npm list -g --depth=0` if they need to be restored later.
+2. Uninstall a standalone Node.js installation through Windows **Settings > Apps** before installing nvm-windows. This avoids PATH and symlink conflicts. Do not remove project source code or project-local `node_modules` as part of this step.
+3. Install nvm-windows using its official installer. Administrator permission is normally required to create or switch its Node.js symlink.
+4. Close and reopen Command Prompt, PowerShell, IDE terminals and development tools so they receive the updated environment variables.
+5. Install the required versions and select NorthStar's version:
+
+   ```cmd
+   nvm install 22.16.0
+   nvm install 24.20.0
+   nvm use 24.20.0
+   ```
+
+6. Enable Corepack and verify the pinned NorthStar toolchain:
+
+   ```cmd
+   node --version
+   corepack enable
+   corepack pnpm --version
+   ```
+
+   Expected versions are Node.js `v24.20.0` and pnpm `11.23.0`.
+
+Use `nvm use 22.16.0` when working on a project that still requires Node.js 22, and run `nvm use 24.20.0` again before working in NorthStar. If switching appears ineffective, run `where node` and `nvm debug` to identify a stale terminal or PATH conflict.
+
 For the local PostgreSQL service, copy `.env.example` to an untracked `.env`, replace the local-only password, and run `docker compose up -d postgres`. The service binds only to loopback on host port 5433 by default so it does not conflict with InfluenceHub on port 5432. Set `POSTGRES_PORT` in the NorthStar `.env` if a different local port is required.
 
 ## Governing context
