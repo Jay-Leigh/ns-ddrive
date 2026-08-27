@@ -1,7 +1,8 @@
 # ADR 0012: Testing, CI and release-quality gates
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 27 August 2026
+- **Accepted:** 27 August 2026 by Mkhuphuli, Tech Lead
 - **Decision owner:** Tech Lead
 - **Reviewers:** QA lead; security owner; DevOps lead; product owner
 - **Source:** Accepted NorthStar Architecture Decision Register, sections 12 and 18
@@ -41,12 +42,14 @@ Use synthetic preview data, secret scanning and negative security tests. Preview
 
 Implement checks incrementally but make required gates active before protected branches receive production-bound code.
 
+Until the private organization repository is upgraded to a GitHub plan that supports the required branch rules, the Tech Lead manually enforces pull-request review, passing checks and independent qualified review for high-risk self-authored changes. This temporary limitation does not weaken the policy and must be replaced with repository enforcement after the upgrade.
+
 ## Acceptance checks
 
-- Map every required check to branch rules.
-- Exercise high-risk review enforcement.
-- Define code-complete and delivery-complete templates.
-- Run browser and accessibility pre-release suites.
+- After the GitHub plan upgrade, map every required check to branch rules and verify the resulting enforcement.
+- Until automated rules are available, record manual high-risk independent-review evidence on each affected pull request.
+- During application scaffolding, activate application-specific formatting, typing, testing and coverage gates; code-complete and delivery-complete expectations are already documented.
+- Before pre-release approval, run the applicable browser and accessibility suites.
 
 ## Review triggers
 

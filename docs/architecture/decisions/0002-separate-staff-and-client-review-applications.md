@@ -1,7 +1,8 @@
 # ADR 0002: Separate staff and client-review applications
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 27 August 2026
+- **Accepted:** 27 August 2026 by Mkhuphuli, Tech Lead
 - **Decision owner:** Project owner
 - **Reviewers:** Frontend lead; security reviewer; product owner
 - **Source:** Accepted NorthStar Architecture Decision Register, sections 5.2, 6 and 14.1
@@ -17,7 +18,7 @@ Create two independent Next.js applications and deployments:
 - `apps/big-staff-frontend/` for staff workflows using normal business routes without a redundant `/staff` prefix.
 - `apps/big-client-review/` for invitation-based client review, with routes such as `/reviews/{review_id}`.
 
-Both consume the private FastAPI backend through their own limited BFF/session boundary. They do not share runtime sessions or middleware. Client operations use purpose-built endpoints such as `/api/v1/client-reviews/{id}` and client-safe DTOs constructed by the backend. Shared packages may provide contracts and visual consistency but cannot collapse the trust boundary.
+Both consume the private FastAPI backend through their own limited backend-for-frontend (BFF) and session boundary. They do not share runtime sessions or middleware. Client operations use purpose-built endpoints such as `/api/v1/client-reviews/{id}` and client-safe data transfer objects (DTOs) constructed by the backend. Shared packages may provide contracts and visual consistency but cannot collapse the trust boundary.
 
 Use separate domains, Firebase projects, cookies, backend services, Cloud Armor policies and CSPs. They may share the global external Application Load Balancer.
 
@@ -41,11 +42,10 @@ Provision independent deployment, monitoring and security policies. Contract tes
 
 ## Acceptance checks
 
-- Approve staff and client domain names.
-- Verify independent authentication projects and cookies.
-- Add automated negative tests for internal-field leakage.
+- Before environment provisioning, approve staff and client domain names.
+- During application scaffolding, verify independent authentication projects and cookie boundaries.
+- Before client-review release, add automated negative tests for internal-field leakage.
 
 ## Review triggers
 
 Supersede only if a higher-authority product or security requirement changes the trust boundary.
-

@@ -1,7 +1,8 @@
 # ADR 0006: API contract authority and TypeScript generation
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 27 August 2026
+- **Accepted:** 27 August 2026 by Mkhuphuli, Tech Lead
 - **Decision owner:** Backend lead
 - **Reviewers:** Frontend lead; QA lead; security reviewer
 - **Source:** Accepted NorthStar Architecture Decision Register, sections 3 and 9
@@ -43,11 +44,10 @@ Create the contract-register template, initial J0–J1 entries and deterministic
 
 ## Acceptance checks
 
-- Approve separate OpenAPI publication boundaries.
-- Demonstrate deterministic client generation and stale-code failure in CI.
-- Contract-test error, idempotency and concurrency behaviour.
+- With this ADR, approve separate staff and client-review OpenAPI publication boundaries.
+- During application scaffolding, demonstrate deterministic client generation and stale-code failure in CI.
+- Before the first affected vertical slice is delivery-complete, contract-test error, idempotency and concurrency behaviour.
 
 ## Review triggers
 
 Supersede if a different machine contract becomes authoritative or a major API version is introduced.
-
