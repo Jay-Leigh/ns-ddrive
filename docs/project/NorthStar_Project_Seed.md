@@ -342,8 +342,8 @@ Do not activate a Deferred item merely because it is common in other systems.
 2. ~~Validate foundation runtime versions and GCP service regions.~~ **Completed 27 August 2026; repeat during locked builds and before production.**
 3. ~~Prepare foundation ADRs.~~ **Proposed ADR pack completed; acceptance checks and approval remain.**
 4. ~~Create the private `northstar` Git repository and insert the ADR pack under `docs/architecture/decisions/`.~~ **Completed 27 August 2026.**
-5. Add root README, ignore rules, contribution guidance, CODEOWNERS and ownership notices.
-6. Configure pinned runtimes, pnpm workspace, `uv`, locks and local PostgreSQL tooling.
+5. ~~Add root README, ignore rules, contribution guidance, CODEOWNERS and ownership notices.~~ **Completed 27 August 2026.**
+6. Configure pinned runtimes, pnpm workspace, `uv`, locks and local PostgreSQL tooling. **Runtime targets, pnpm/Turborepo workspace boundaries and local PostgreSQL Compose configuration added 27 August 2026; target Node/Python installation, `uv` setup and frozen locks remain.**
 7. Establish formatting, linting, typing, secret detection and test foundations.
 8. Write the BIG Frontend Architecture and Development Standards.
 9. Create the API contract register and first J0–J1 contracts.

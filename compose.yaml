@@ -1,0 +1,23 @@
+name: northstar
+
+services:
+  postgres:
+    image: postgres:18.4-bookworm
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-northstar}
+      POSTGRES_USER: ${POSTGRES_USER:-northstar_dev}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Copy .env.example to .env and set a local-only password}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    volumes:
+      - northstar-postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  northstar-postgres-data:

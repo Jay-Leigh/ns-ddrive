@@ -42,6 +42,17 @@ jobs:
             .github/CODEOWNERS
             .github/pull_request_template.md
             .agents/standards/Git\ Workflow\ SOP.md
+            .node-version
+            .python-version
+            package.json
+            pnpm-lock.yaml
+            pnpm-workspace.yaml
+            turbo.json
+            compose.yaml
+            apps/README.md
+            big-packages/README.md
+            cs-packages/README.md
+            infrastructure/README.md
             docs/architecture/NorthStar_Architecture_Decision_Register.md
             docs/project/NorthStar_Project_Seed.md
             docs/agile/deliverables/internal/BIG\ Git\ and\ Release\ Implementation\ Guide.md
@@ -51,6 +62,33 @@ jobs:
           for path in "${required[@]}"; do
             test -f "$path" || { echo "Missing required file: $path"; exit 1; }
           done
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+
+      - name: Verify frozen JavaScript foundation
+        shell: bash
+        run: |
+          corepack enable
+          corepack pnpm install --frozen-lockfile --ignore-scripts
+          corepack pnpm lint
+          corepack pnpm typecheck
+          corepack pnpm test
+
+      - name: Validate JSON configuration
+        shell: bash
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('package.json', 'utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('turbo.json', 'utf8'))"
+
+      - name: Validate local service configuration
+        shell: bash
+        env:
+          POSTGRES_PASSWORD: validation-only
+        run: docker compose config --quiet
 
       - name: Check non-Markdown trailing whitespace
         shell: bash

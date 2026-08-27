@@ -1,0 +1,19 @@
+{
+  "name": "northstar",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.23.0",
+  "engines": {
+    "node": "24.20.0",
+    "pnpm": "11.23.0"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "2.10.10"
+  }
+}
