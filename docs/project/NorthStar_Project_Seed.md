@@ -343,7 +343,7 @@ Do not activate a Deferred item merely because it is common in other systems.
 3. ~~Prepare foundation ADRs.~~ **Proposed ADR pack completed; acceptance checks and approval remain.**
 4. ~~Create the private `northstar` Git repository and insert the ADR pack under `docs/architecture/decisions/`.~~ **Completed 27 August 2026.**
 5. ~~Add root README, ignore rules, contribution guidance, CODEOWNERS and ownership notices.~~ **Completed 27 August 2026.**
-6. Configure pinned runtimes, pnpm workspace, `uv`, locks and local PostgreSQL tooling. **Runtime targets, pnpm/Turborepo workspace boundaries and local PostgreSQL Compose configuration added 27 August 2026; target Node/Python installation, `uv` setup and frozen locks remain.**
+6. Configure pinned runtimes, pnpm workspace, `uv`, locks and local PostgreSQL tooling. **Runtime targets, pnpm/Turborepo workspace boundaries, frozen JavaScript lock and local PostgreSQL Compose configuration added 27 August 2026. Python 3.14.7 and `uv` 0.12.6 were installed locally, and PostgreSQL 18.4 was verified in an isolated container. Local Node remains 22.16.0 pending an administrator-approved upgrade to 24.20.0; the exact Node target is verified in CI. The Python lock remains implementation-triggered until the backend manifest exists.**
 7. Establish formatting, linting, typing, secret detection and test foundations.
 8. Write the BIG Frontend Architecture and Development Standards.
 9. Create the API contract register and first J0–J1 contracts.
