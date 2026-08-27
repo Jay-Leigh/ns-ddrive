@@ -54,6 +54,8 @@ Read these sources in order before architecture or implementation work:
 
 See the [NorthStar Technical Glossary](docs/project/NorthStar_Technical_Glossary.md) for recurring abbreviations and specialist terms used in project documentation.
 
+API design follows the [NorthStar API Contract Register](docs/contracts/NorthStar_API_Contract_Register.md). Its initial J0/J1 entries remain Proposed until their recorded confirmation gates are resolved.
+
 Git and release work is governed by:
 
 - [Department Git Workflow SOP](.agents/standards/Git%20Workflow%20SOP.md)

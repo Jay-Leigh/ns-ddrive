@@ -935,7 +935,7 @@ Acceptance establishes the governing baseline. The following evidence checks rem
 - [ ] Confirm that internal targets are not presented externally as contractual SLAs.
 - [ ] Confirm ADR owners and formally review each Proposed ADR at its trigger. **ADRs 0002, 0006, 0007, 0008 and 0012 accepted 27 August 2026; eight ADRs remain Proposed.**
 - [x] Transfer accepted decisions into the NorthStar project seed. **Completed 27 August 2026.**
-- [ ] Transfer accepted decisions into the frontend standards and API contract register where applicable. **Frontend standard accepted 27 August 2026; API contract register remains pending.**
+- [ ] Transfer accepted decisions into the frontend standards and API contract register where applicable. **Frontend standard accepted 27 August 2026; Proposed API contract register drafted 27 August 2026, with contract confirmation still pending.**
 
 ### 24.1 Foundation evidence references
 
