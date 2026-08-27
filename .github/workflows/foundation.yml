@@ -54,7 +54,9 @@ jobs:
             cs-packages/README.md
             infrastructure/README.md
             docs/architecture/NorthStar_Architecture_Decision_Register.md
+            docs/contracts/NorthStar_API_Contract_Register.md
             docs/project/NorthStar_Project_Seed.md
+            docs/project/NorthStar_Technical_Glossary.md
             docs/agile/deliverables/internal/BIG\ Git\ and\ Release\ Implementation\ Guide.md
             docs/agile/deliverables/internal/BIG\ October\ 2026\ Release\ Plan.md
           )

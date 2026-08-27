@@ -333,6 +333,7 @@ Do not activate a Deferred item merely because it is common in other systems.
 - `docs/architecture/decisions/` — five Accepted first-scaffolding ADRs (0002, 0006, 0007, 0008 and 0012) and eight Proposed foundation ADRs requiring their own triggered reviews.
 - `NorthStar_Project_Seed.md` — this active implementation handoff; it supersedes the old BIG seed.
 - `BIG_Frontend_Architecture_and_Development_Standards.md` — Accepted frontend standard derived from the accepted register and applicable Accepted ADRs.
+- `docs/contracts/NorthStar_API_Contract_Register.md` — Proposed register containing ten traceable J0/J1 contract entries; confirmation remains pending.
 - BIG Git/release documents incorporated into the repository:
   - `docs/agile/deliverables/internal/BIG Git and Release Implementation Guide.md`
   - `docs/agile/deliverables/internal/BIG October 2026 Release Plan.md`
@@ -347,7 +348,7 @@ Do not activate a Deferred item merely because it is common in other systems.
 6. Configure pinned runtimes, pnpm workspace, `uv`, locks and local PostgreSQL tooling. **Runtime targets, pnpm/Turborepo workspace boundaries, frozen JavaScript lock and local PostgreSQL Compose configuration added 27 August 2026. Node 24.20.0 and pnpm 11.23.0 were verified locally through NVM for Windows and Corepack; the frozen foundation checks passed with the pinned toolchain. Python 3.14.7 and `uv` 0.12.6 were verified locally, and PostgreSQL 18.4 was verified in an isolated container. The Python lock remains implementation-triggered until the backend manifest exists.**
 7. Establish formatting, linting, typing, secret detection and test foundations.
 8. ~~Write and review the BIG Frontend Architecture and Development Standards.~~ **Accepted 27 August 2026; the styling-framework decision remains separately unresolved before styling scaffolding.**
-9. Create the API contract register and first J0–J1 contracts.
+9. Create the API contract register and first J0–J1 contracts. **Proposed register and ten traceable J0/J1 contract entries drafted 27 August 2026; open questions and formal confirmation remain.**
 10. Scaffold the three applications without feature business logic.
 11. Establish CI, protected branches and preview/develop environments.
 12. Implement release-critical vertical slices from Confirmed contracts.

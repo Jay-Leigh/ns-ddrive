@@ -23,8 +23,10 @@ This glossary defines recurring abbreviations and specialist terms used in North
 | HTTP | Hypertext Transfer Protocol: the request-and-response protocol used by web browsers and NorthStar API boundaries. |
 | IAM | Identity and Access Management: policies and identities controlling access to cloud and infrastructure resources. |
 | ICM | Influencer Community Management: the BIG operational function responsible for relevant community, filtering, vetting and campaign activities. |
+| ICS | Business shorthand used for two project-brief fields in the source material. Its expansion and the distinction between those fields require business confirmation. |
 | Idempotency | The property that safely repeating the same requested operation has no additional unintended effect. NorthStar uses an `Idempotency-Key` to recognize important retried creates and actions. |
 | Lockfile | A generated dependency record that fixes the exact resolved package versions so installations can be reproduced. NorthStar uses `pnpm-lock.yaml` and, when the backend is introduced, `uv.lock`. |
+| KPI | Key Performance Indicator: a measurable target used to assess whether an activation or project achieved its intended result. |
 | LTS | Long-Term Support: a runtime release line maintained for stability and security over a defined support period. |
 | MFA | Multi-Factor Authentication: authentication requiring more than one independent factor. |
 | Monorepo | A single repository containing multiple applications and packages governed and versioned together. |
