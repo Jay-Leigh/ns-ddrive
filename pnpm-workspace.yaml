@@ -3,3 +3,5 @@ packages:
   - "apps/big-client-review"
   - "big-packages/*"
   - "cs-packages/*"
+allowBuilds:
+  simple-git-hooks: false

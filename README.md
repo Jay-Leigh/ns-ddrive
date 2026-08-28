@@ -42,6 +42,16 @@ Use [nvm-windows](https://github.com/coreybutler/nvm-windows) to keep NorthStar'
 
 Use `nvm use 22.16.0` when working on a project that still requires Node.js 22, and run `nvm use 24.20.0` again before working in NorthStar. If switching appears ineffective, run `where node` and `nvm debug` to identify a stale terminal or PATH conflict.
 
+After selecting Node.js 24, install the frozen dependencies and activate the repository Git hooks:
+
+```cmd
+corepack pnpm install --frozen-lockfile
+corepack pnpm hooks:install
+corepack pnpm check
+```
+
+The complete check runs formatting verification, ESLint, strict TypeScript, Vitest and Secretlint. Pre-commit checks the staged files, while pre-push and CI run the complete repository gate.
+
 For the local PostgreSQL service, copy `.env.example` to an untracked `.env`, replace the local-only password, and run `docker compose up -d postgres`. The service binds only to loopback on host port 5433 by default so it does not conflict with InfluenceHub on port 5432. Set `POSTGRES_PORT` in the NorthStar `.env` if a different local port is required.
 
 ## Governing context
