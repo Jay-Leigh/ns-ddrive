@@ -48,6 +48,11 @@ jobs:
             pnpm-lock.yaml
             pnpm-workspace.yaml
             turbo.json
+            tsconfig.json
+            eslint.config.mjs
+            vitest.config.ts
+            .prettierrc.json
+            .secretlintrc.json
             compose.yaml
             apps/README.md
             big-packages/README.md
@@ -76,9 +81,7 @@ jobs:
         run: |
           corepack enable
           corepack pnpm install --frozen-lockfile --ignore-scripts
-          corepack pnpm lint
-          corepack pnpm typecheck
-          corepack pnpm test
+          corepack pnpm check
 
       - name: Validate JSON configuration
         shell: bash
