@@ -350,7 +350,7 @@ Do not activate a Deferred item merely because it is common in other systems.
 8. ~~Write and review the BIG Frontend Architecture and Development Standards.~~ **Accepted 27 August 2026; the Tailwind CSS v4, semantic-token, selective CSS Modules/Radix styling baseline was accepted in ADR 0014 on 30 August 2026.**
 9. Create the API contract register and first J0–J1 contracts. **Proposed register and ten traceable J0/J1 contract entries drafted 27 August 2026; open questions and formal confirmation remain.**
 10. ~~Scaffold the three applications without feature business logic.~~ **Completed 30 August 2026. The separate staff and client-review Next.js foundations, Tailwind v4 semantic-token baseline and FastAPI backend foundation have application-specific formatting, linting, strict typing, builds where applicable, tests and coverage gates. The backend publishes operational health endpoints only; it has no authentication, authorisation, database schema, migration revision, BFF operation or J0/J1 business endpoint.**
-11. Establish CI, protected branches and preview/develop environments.
+11. Establish CI, protected branches and preview/develop environments. **CI and team-based protection of `main` and `develop` were completed 30 August 2026. GitHub deployment environments remain implementation-triggered by the approved hosting and deployment workflows.**
 12. Implement release-critical vertical slices from Confirmed contracts.
 
 Do not scaffold major framework, security, data or infrastructure choices without the corresponding accepted register entry or ADR. Preserve Deferred items until their triggers occur.

@@ -16,9 +16,11 @@ The `main` and `develop` branches:
 - dismiss stale reviews when new changes are pushed;
 - enforce the controls for administrators;
 - prevent force-pushes and deletion; and
-- restrict branch updates and merge gatekeeping to `Mkhuphuli`, the current Tech Lead.
+- restrict branch updates and merge gatekeeping to the Maintain-level `NorthStar Tech Leads` team.
 
-The required approval count is initially zero so that the sole senior developer can self-review and merge low-risk work after CI. This does not waive the independent qualified review required by ADR 0012 for high-risk self-authored changes.
+The general `NorthStar` team has Write access for ordinary contribution. It is a general CODEOWNER but is not included in protected-branch restrictions, so its members cannot merge to `main` or `develop` unless they also belong to `NorthStar Tech Leads`.
+
+The required approval count is initially zero so that the sole Tech Lead can self-review and merge low-risk work after CI. This does not waive the independent qualified review required by ADR 0012 for high-risk self-authored changes. Multiple GitHub accounts controlled by the same person do not constitute independent review.
 
 ## Release branches and stable tags
 
@@ -28,5 +30,8 @@ The active `Protect stable version tags` ruleset applies to `v*` and prevents ta
 
 ## Review-policy limitation
 
-GitHub cannot infer all NorthStar high-risk categories from business context. Until an approved independent-review team and path mapping exist, the Tech Lead must identify high-risk work during task initiation and obtain independent qualified review before merge. CODEOWNERS and repository rules must be strengthened when the second qualified reviewer or reviewer team is established.
+GitHub cannot infer all NorthStar high-risk categories from business context. The Tech Lead must identify high-risk work during task initiation and obtain independent qualified review before merge. The `NorthStar Tech Leads` team owns `.github/`, `docs/architecture/` and `infrastructure/`, but this ownership does not substitute for independent review when the author and available team members represent the same person. Repository rules must be strengthened when a genuinely independent qualified reviewer or reviewer team is established.
 
+## Deferred deployment controls
+
+GitHub deployment environments are not yet created. Create the approved development, preview, staging and production environments when their deployment workflows and hosting targets are introduced; this does not block contract confirmation or local application development.
