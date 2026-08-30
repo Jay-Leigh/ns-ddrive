@@ -27,8 +27,8 @@ NorthStar follows the department [SOP: Git Workflow, Release Versioning & Team C
 
 ## Quality and release safety
 
-- Install dependencies with `corepack pnpm install --frozen-lockfile`. If Git hooks are not installed, run `corepack pnpm hooks:install` once in the clone.
-- Run focused tests during development and `corepack pnpm check` before review. This root gate checks formatting, linting, strict TypeScript, tests and committed content for secrets.
+- Install dependencies with `corepack pnpm install --frozen-lockfile` and `uv sync --all-packages --locked --dev`. If Git hooks are not installed, run `corepack pnpm hooks:install` once in the clone.
+- Run focused tests during development and `corepack pnpm check` before review. This root gate checks formatting, linting, strict types, production builds, tests and committed content for secrets across the JavaScript and Python workspaces.
 - Pre-commit checks staged files for formatting, lint and secrets. Pre-push runs the complete root gate. Full CI repeats the complete root gate and remains authoritative.
 - Never commit secrets, production data or unrestricted sensitive information.
 - Merge does not equal release, and client UAT does not equal production approval.

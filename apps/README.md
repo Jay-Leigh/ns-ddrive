@@ -8,4 +8,4 @@ Authorized application boundaries:
 - `big-client-review/` — invited client-review Next.js application and deployment.
 - `big-backend/` — authoritative FastAPI business backend.
 
-The two frontends do not share a runtime, session or middleware boundary. Application code must not be added until its governing architecture and contract decisions permit scaffolding.
+The two frontends do not share a runtime, session or middleware boundary. Their approved application foundations are scaffolded; feature code must not be added until the relevant architecture and contract decisions permit it.
