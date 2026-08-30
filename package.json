@@ -10,9 +10,9 @@
   },
   "scripts": {
     "build": "turbo run build",
-    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm secrets:check",
-    "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,json,jsonc,yaml,yml}\"",
-    "format:check": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,json,jsonc,yaml,yml}\"",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm build && pnpm test && pnpm secrets:check",
+    "format": "prettier --write \"**/*.{css,js,cjs,mjs,ts,tsx,json,jsonc,yaml,yml}\"",
+    "format:check": "prettier --check \"**/*.{css,js,cjs,mjs,ts,tsx,json,jsonc,yaml,yml}\"",
     "hooks:install": "simple-git-hooks",
     "lint": "eslint . --max-warnings 0 && turbo run lint",
     "prepare": "simple-git-hooks",
@@ -27,14 +27,14 @@
   "lint-staged": {
     "*": "secretlint",
     "*.{js,cjs,mjs,ts,tsx}": "eslint --max-warnings 0",
-    "*.{js,cjs,mjs,ts,tsx,json,jsonc,yaml,yml}": "prettier --write"
+    "*.{css,js,cjs,mjs,ts,tsx,json,jsonc,yaml,yml}": "prettier --write"
   },
   "devDependencies": {
-    "@eslint/js": "10.0.1",
+    "@eslint/js": "9.39.5",
     "@secretlint/secretlint-rule-preset-recommend": "13.0.4",
     "@types/node": "26.3.0",
     "@vitest/coverage-v8": "4.1.11",
-    "eslint": "10.9.1",
+    "eslint": "9.39.5",
     "lint-staged": "17.3.0",
     "prettier": "3.9.6",
     "secretlint": "13.0.4",

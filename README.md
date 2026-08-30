@@ -2,7 +2,7 @@
 
 NorthStar is the BIG-owned monorepo for the BIG operational platform. It contains separate staff and client-review applications, the authoritative BIG backend, BIG-owned packages and selected Conversion Science-owned reusable packages.
 
-The repository is currently in its governed foundation stage. Application scaffolding has not started.
+The repository is currently in its governed foundation stage. The separate staff and client-review frontend foundations are scaffolded; backend and feature scaffolding remain pending.
 
 ## Foundation prerequisites
 

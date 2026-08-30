@@ -5,3 +5,4 @@ packages:
   - "cs-packages/*"
 allowBuilds:
   simple-git-hooks: false
+  unrs-resolver: true
