@@ -1,0 +1,11 @@
+{
+  "name": "@big/design-system",
+  "version": "0.0.0",
+  "private": true,
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    "./tokens.css": "./src/tokens.css"
+  }
+}

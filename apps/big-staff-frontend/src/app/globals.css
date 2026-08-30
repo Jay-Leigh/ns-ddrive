@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "@big/design-system/tokens.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--big-color-background);
+  color: var(--big-color-foreground);
+  font-family: var(--big-font-sans);
+}
+
+body {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--big-color-focus);
+  outline-offset: 3px;
+}
