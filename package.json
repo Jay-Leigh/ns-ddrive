@@ -10,12 +10,17 @@
   },
   "scripts": {
     "build": "turbo run build",
-    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm build && pnpm test && pnpm secrets:check",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm build && pnpm test && pnpm python:check && pnpm secrets:check",
     "format": "prettier --write \"**/*.{css,js,cjs,mjs,ts,tsx,json,jsonc,yaml,yml}\"",
     "format:check": "prettier --check \"**/*.{css,js,cjs,mjs,ts,tsx,json,jsonc,yaml,yml}\"",
     "hooks:install": "simple-git-hooks",
     "lint": "eslint . --max-warnings 0 && turbo run lint",
     "prepare": "simple-git-hooks",
+    "python:check": "pnpm python:format:check && pnpm python:lint && pnpm python:typecheck && pnpm python:test",
+    "python:format:check": "uv run --directory apps/big-backend ruff format --check .",
+    "python:lint": "uv run --directory apps/big-backend ruff check .",
+    "python:test": "uv run --directory apps/big-backend pytest",
+    "python:typecheck": "uv run --directory apps/big-backend mypy",
     "secrets:check": "secretlint **/*",
     "test": "vitest run && turbo run test",
     "typecheck": "tsc --noEmit && turbo run typecheck"
@@ -26,6 +31,10 @@
   },
   "lint-staged": {
     "*": "secretlint",
+    "*.py": [
+      "uv run --directory apps/big-backend ruff format",
+      "uv run --directory apps/big-backend ruff check --fix"
+    ],
     "*.{js,cjs,mjs,ts,tsx}": "eslint --max-warnings 0",
     "*.{css,js,cjs,mjs,ts,tsx,json,jsonc,yaml,yml}": "prettier --write"
   },

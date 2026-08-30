@@ -1,0 +1,1 @@
+"""BIG backend application package."""

@@ -2,7 +2,7 @@
 
 NorthStar is the BIG-owned monorepo for the BIG operational platform. It contains separate staff and client-review applications, the authoritative BIG backend, BIG-owned packages and selected Conversion Science-owned reusable packages.
 
-The repository is currently in its governed foundation stage. The separate staff and client-review frontend foundations are scaffolded; backend and feature scaffolding remain pending.
+The repository is currently in its governed foundation stage. The separate staff frontend, client-review frontend and FastAPI backend foundations are scaffolded; authentication, database schema and feature work remain pending.
 
 ## Foundation prerequisites
 
@@ -42,15 +42,38 @@ Use [nvm-windows](https://github.com/coreybutler/nvm-windows) to keep NorthStar'
 
 Use `nvm use 22.16.0` when working on a project that still requires Node.js 22, and run `nvm use 24.20.0` again before working in NorthStar. If switching appears ineffective, run `where node` and `nvm debug` to identify a stale terminal or PATH conflict.
 
-After selecting Node.js 24, install the frozen dependencies and activate the repository Git hooks:
+After selecting Node.js 24, install the frozen JavaScript dependencies and activate the repository Git hooks:
 
 ```cmd
 corepack pnpm install --frozen-lockfile
 corepack pnpm hooks:install
+```
+
+### Windows Python and uv setup
+
+Install `uv`, close and reopen the terminal so its PATH is refreshed, and verify the repository-pinned version:
+
+```cmd
+winget install --id astral-sh.uv
+uv --version
+```
+
+The expected version is `uv 0.12.6`. If `uv` is not recognized after installation, reopen the terminal and run `where uv` before continuing.
+
+Install the required Python runtime and synchronize the frozen Python workspace:
+
+```cmd
+uv python install 3.14.7
+uv sync --all-packages --locked --dev
+```
+
+Run the complete repository gate only after both JavaScript and Python dependencies are available:
+
+```cmd
 corepack pnpm check
 ```
 
-The complete check runs formatting verification, ESLint, strict TypeScript, Vitest and Secretlint. Pre-commit checks the staged files, while pre-push and CI run the complete repository gate.
+The complete check runs formatting verification, ESLint, strict TypeScript, production builds, Vitest, Ruff, mypy, pytest and Secretlint. Pre-commit checks the staged files, while pre-push and CI run the complete repository gate.
 
 For the local PostgreSQL service, copy `.env.example` to an untracked `.env`, replace the local-only password, and run `docker compose up -d postgres`. The service binds only to loopback on host port 5433 by default so it does not conflict with InfluenceHub on port 5432. Set `POSTGRES_PORT` in the NorthStar `.env` if a different local port is required.
 

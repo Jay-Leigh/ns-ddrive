@@ -44,6 +44,8 @@ jobs:
             .agents/standards/Git\ Workflow\ SOP.md
             .node-version
             .python-version
+            pyproject.toml
+            uv.lock
             package.json
             pnpm-lock.yaml
             pnpm-workspace.yaml
@@ -55,6 +57,7 @@ jobs:
             .secretlintrc.json
             compose.yaml
             apps/README.md
+            apps/big-backend/pyproject.toml
             big-packages/README.md
             cs-packages/README.md
             infrastructure/README.md
@@ -81,7 +84,25 @@ jobs:
         run: |
           corepack enable
           corepack pnpm install --frozen-lockfile --ignore-scripts
-          corepack pnpm check
+
+      - name: Set up pinned Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version-file: .python-version
+
+      - name: Set up pinned uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: 0.12.6
+          enable-cache: false
+
+      - name: Verify frozen Python foundation
+        shell: bash
+        run: uv sync --all-packages --locked --dev
+
+      - name: Run complete repository gate
+        shell: bash
+        run: corepack pnpm check
 
       - name: Validate JSON configuration
         shell: bash
