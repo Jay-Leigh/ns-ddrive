@@ -369,7 +369,11 @@ An external feature-flag provider remains Deferred until internal governance is 
 - no trust-zone-specific data behavior; and
 - reviewed ownership.
 
-This standard does not choose a styling framework. That decision remains unresolved and must be separately authorized and recorded before design-system or application styling scaffolding.
+Accepted ADR 0014 establishes Tailwind CSS v4 as the primary styling framework and semantic CSS custom properties as the stable application-facing token interface. Primitive tokens may support semantic tokens but are not normally consumed directly by feature code.
+
+Use CSS Modules only where component-specific complexity is clearer than Tailwind utilities, and require them to consume the same semantic tokens. Radix Primitives may be adopted selectively for complex interactive controls, but NorthStar must still verify WCAG 2.2 AA behavior.
+
+Runtime CSS-in-JS libraries and opinionated visual component suites are not part of the foundation baseline. shadcn/ui patterns require individual provenance, licensing, token, accessibility and test review. Add class-composition, variant and Tailwind class-formatting helpers only when their implementation need occurs. The baseline permits future theming without committing NorthStar to dark mode or multi-tenant branding.
 
 ## 20. Quality gates and delivery
 
@@ -417,7 +421,7 @@ The acceptance review confirmed:
 - authentication, CSRF and contract rules are implementable with the selected Next.js baseline;
 - disclosure, accessibility, testing and release gates are sufficient;
 - Deferred choices remain deferred; and
-- the styling-framework decision remains unresolved and requires separate authorization before design-system or application styling scaffolding.
+- the styling baseline is governed by Accepted ADR 0014 and preserves independent accessibility verification and staged design-system admission.
 
 ## 23. Review triggers
 

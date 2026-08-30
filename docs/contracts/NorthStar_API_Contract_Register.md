@@ -437,7 +437,7 @@ The following items block confirmation of one or more entries but do not block t
 4. Approve versioned controlled vocabularies for project, activation, community, category and social-platform fields.
 5. Resolve the category-count conflict in source material through an authoritative taxonomy.
 6. Define project lifecycle transitions and the Ready to Recruit re-sign-off rule.
-7. Define the styling framework separately before styling or design-system scaffolding; it does not affect these API semantics.
+7. Apply the Accepted ADR 0014 styling baseline during frontend scaffolding; it does not affect these API semantics.
 8. Decide whether the useful v2.1 supporting stories will be promoted into the approved v2.2 backlog or approved individually for contract confirmation.
 
 ## 11. Verification plan
