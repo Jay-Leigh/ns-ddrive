@@ -42,12 +42,12 @@ Use synthetic preview data, secret scanning and negative security tests. Preview
 
 Implement checks incrementally but make required gates active before protected branches receive production-bound code.
 
-Until the private organization repository is upgraded to a GitHub plan that supports the required branch rules, the Tech Lead manually enforces pull-request review, passing checks and independent qualified review for high-risk self-authored changes. This temporary limitation does not weaken the policy and must be replaced with repository enforcement after the upgrade.
+The private organization repository upgrade was completed on 30 August 2026. The `main` and `develop` branches now require the `Repository governance` check, current branches and resolved review conversations; dismiss stale reviews; enforce protections for administrators; prevent force-pushes and deletion; and restrict branch updates to the Maintain-level `NorthStar Tech Leads` team. The required approval count remains zero so the current sole Tech Lead can merge self-authored low-risk work after review and successful CI. Independent qualified review for high-risk self-authored work remains a procedural requirement until a genuinely independent qualified reviewer is available and can be represented safely in repository rules.
 
 ## Acceptance checks
 
-- After the GitHub plan upgrade, map every required check to branch rules and verify the resulting enforcement.
-- Until automated rules are available, record manual high-risk independent-review evidence on each affected pull request.
+- ~~After the GitHub plan upgrade, map every required check to branch rules and verify the resulting enforcement.~~ **Completed 30 August 2026 for `main` and `develop`.**
+- Record independent-review evidence on each affected high-risk pull request until the conditional policy can be represented safely in automated rules.
 - During application scaffolding, activate application-specific formatting, typing, testing and coverage gates; code-complete and delivery-complete expectations are already documented.
 - Before pre-release approval, run the applicable browser and accessibility suites.
 
