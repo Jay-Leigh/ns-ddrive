@@ -1,7 +1,8 @@
 # ADR 0012: Testing, CI and release-quality gates
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 27 August 2026
+- **Accepted:** 27 August 2026 by Mkhuphuli, Tech Lead
 - **Decision owner:** Tech Lead
 - **Reviewers:** QA lead; security owner; DevOps lead; product owner
 - **Source:** Accepted NorthStar Architecture Decision Register, sections 12 and 18
@@ -41,12 +42,14 @@ Use synthetic preview data, secret scanning and negative security tests. Preview
 
 Implement checks incrementally but make required gates active before protected branches receive production-bound code.
 
+The private organization repository upgrade was completed on 30 August 2026. The `main` and `develop` branches now require the `Repository governance` check, current branches and resolved review conversations; dismiss stale reviews; enforce protections for administrators; prevent force-pushes and deletion; and restrict branch updates to the Maintain-level `NorthStar Tech Leads` team. The required approval count remains zero so the current sole Tech Lead can merge self-authored low-risk work after review and successful CI. Independent qualified review for high-risk self-authored work remains a procedural requirement until a genuinely independent qualified reviewer is available and can be represented safely in repository rules.
+
 ## Acceptance checks
 
-- Map every required check to branch rules.
-- Exercise high-risk review enforcement.
-- Define code-complete and delivery-complete templates.
-- Run browser and accessibility pre-release suites.
+- ~~After the GitHub plan upgrade, map every required check to branch rules and verify the resulting enforcement.~~ **Completed 30 August 2026 for `main` and `develop`.**
+- Record independent-review evidence on each affected high-risk pull request until the conditional policy can be represented safely in automated rules.
+- During application scaffolding, activate application-specific formatting, typing, testing and coverage gates; code-complete and delivery-complete expectations are already documented.
+- Before pre-release approval, run the applicable browser and accessibility suites.
 
 ## Review triggers
 

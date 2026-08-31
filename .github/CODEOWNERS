@@ -1,11 +1,9 @@
-# Initial repository gatekeeper. Replace or supplement this user with approved
-# Conversion Science teams when their GitHub team handles are confirmed.
-* @Mkhuphuli
+# The project team owns the general codebase and receives review requests.
+* @Conversion-Science/northstar
 
 # High-risk areas still require independent qualified review when self-authored,
 # as defined by the department SOP and ADR 0012. CODEOWNERS alone does not
 # implement that conditional review policy.
-/.github/ @Mkhuphuli
-/docs/architecture/ @Mkhuphuli
-/infrastructure/ @Mkhuphuli
-
+/.github/ @Conversion-Science/northstar-tech-leads
+/docs/architecture/ @Conversion-Science/northstar-tech-leads
+/infrastructure/ @Conversion-Science/northstar-tech-leads

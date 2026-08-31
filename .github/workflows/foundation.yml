@@ -23,7 +23,7 @@ jobs:
   repository-governance:
     name: Repository governance
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     steps:
       - name: Check out repository
@@ -42,8 +42,29 @@ jobs:
             .github/CODEOWNERS
             .github/pull_request_template.md
             .agents/standards/Git\ Workflow\ SOP.md
+            .node-version
+            .python-version
+            pyproject.toml
+            uv.lock
+            package.json
+            pnpm-lock.yaml
+            pnpm-workspace.yaml
+            turbo.json
+            tsconfig.json
+            eslint.config.mjs
+            vitest.config.ts
+            .prettierrc.json
+            .secretlintrc.json
+            compose.yaml
+            apps/README.md
+            apps/big-backend/pyproject.toml
+            big-packages/README.md
+            cs-packages/README.md
+            infrastructure/README.md
             docs/architecture/NorthStar_Architecture_Decision_Register.md
+            docs/contracts/NorthStar_API_Contract_Register.md
             docs/project/NorthStar_Project_Seed.md
+            docs/project/NorthStar_Technical_Glossary.md
             docs/agile/deliverables/internal/BIG\ Git\ and\ Release\ Implementation\ Guide.md
             docs/agile/deliverables/internal/BIG\ October\ 2026\ Release\ Plan.md
           )
@@ -51,6 +72,49 @@ jobs:
           for path in "${required[@]}"; do
             test -f "$path" || { echo "Missing required file: $path"; exit 1; }
           done
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+
+      - name: Verify frozen JavaScript foundation
+        shell: bash
+        run: |
+          corepack enable
+          corepack pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Set up pinned Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version-file: .python-version
+
+      - name: Set up pinned uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: 0.12.6
+          enable-cache: false
+
+      - name: Verify frozen Python foundation
+        shell: bash
+        run: uv sync --all-packages --locked --dev
+
+      - name: Run complete repository gate
+        shell: bash
+        run: corepack pnpm check
+
+      - name: Validate JSON configuration
+        shell: bash
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('package.json', 'utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('turbo.json', 'utf8'))"
+
+      - name: Validate local service configuration
+        shell: bash
+        env:
+          POSTGRES_PASSWORD: validation-only
+        run: docker compose config --quiet
 
       - name: Check non-Markdown trailing whitespace
         shell: bash

@@ -419,6 +419,21 @@ Proposed/Confirmed contract register
 - Terraform supplies non-secret configuration and Secret Manager supplies secrets.
 - Browser-public and server-only configuration are explicitly separated.
 
+### 10.5 Styling and design tokens
+
+**Status:** Confirmed
+**Timing:** Foundation
+
+- Use Tailwind CSS v4 as the primary styling framework.
+- Semantic CSS custom properties are the stable application-facing design-token interface. Primitive tokens may support semantic tokens but are not normally consumed directly by feature code.
+- Use CSS Modules only where component-specific complexity is clearer than Tailwind utilities, and require them to consume the same semantic tokens.
+- Adopt Radix Primitives selectively for complex interactive controls. Radix does not replace NorthStar's WCAG 2.2 AA testing obligations.
+- Do not add runtime CSS-in-JS or an opinionated visual component suite to the foundation baseline. A later justified need requires separate review.
+- Do not adopt shadcn/ui patterns automatically; review provenance, licensing, tokens, accessibility and tests per component.
+- Add `clsx`, `tailwind-merge`, CVA and `prettier-plugin-tailwindcss` only when their implementation need occurs.
+- This baseline enables future theming but does not commit NorthStar to dark mode or multi-tenant branding.
+- Accepted ADR 0014 records the decision detail and review triggers.
+
 ## 11. Monorepo and development tooling
 
 ### 11.1 TypeScript workspace
@@ -933,9 +948,9 @@ Acceptance establishes the governing baseline. The following evidence checks rem
 - [x] Verify Johannesburg/Belgium Cloud Tasks and Cloud Scheduler availability. **Validated 27 August 2026.**
 - [ ] Complete the Johannesburg/Belgium data-transfer, subprocessors and POPIA Section 72 privacy assessment before production use.
 - [ ] Confirm that internal targets are not presented externally as contractual SLAs.
-- [ ] Confirm the initial ADR owners and formally accept the Proposed ADRs. **Repository-ready Proposed ADR pack created 27 August 2026.**
+- [ ] Confirm ADR owners and formally review each Proposed ADR at its trigger. **ADRs 0002, 0006, 0007, 0008 and 0012 accepted 27 August 2026; ADR 0014 accepted 30 August 2026; eight ADRs remain Proposed.**
 - [x] Transfer accepted decisions into the NorthStar project seed. **Completed 27 August 2026.**
-- [ ] Transfer accepted decisions into the frontend standards and API contract register where applicable.
+- [ ] Transfer accepted decisions into the frontend standards and API contract register where applicable. **Frontend standard accepted 27 August 2026; Proposed API contract register drafted 27 August 2026, with contract confirmation still pending.**
 
 ### 24.1 Foundation evidence references
 

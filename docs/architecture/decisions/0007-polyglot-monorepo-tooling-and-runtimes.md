@@ -1,7 +1,8 @@
 # ADR 0007: Polyglot monorepo tooling and pinned runtimes
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 27 August 2026
+- **Accepted:** 27 August 2026 by Mkhuphuli, Tech Lead
 - **Decision owner:** Senior technical lead
 - **Reviewers:** Frontend lead; backend lead; DevOps lead
 - **Source:** Accepted NorthStar Architecture Decision Register, sections 10, 11 and 24.1
@@ -47,11 +48,10 @@ Record runtimes in repository version files, CI images and Dockerfiles. Revalida
 
 ## Acceptance checks
 
-- Build both frontends and backend in CI using pinned runtimes.
-- Reproduce installs from frozen locks.
-- Run smoke tests in the deployment container images.
+- Before application scaffolding is considered complete, build both frontends and backend in CI using pinned runtimes.
+- Reproduce JavaScript installs from the existing frozen lock; generate and verify `uv.lock` when the backend `pyproject.toml` is introduced.
+- Before deployment readiness, run smoke tests in the deployment container images.
 
 ## Review triggers
 
 Review for runtime EOL, a material security release, unsupported deployment images or a concrete compatibility failure.
-

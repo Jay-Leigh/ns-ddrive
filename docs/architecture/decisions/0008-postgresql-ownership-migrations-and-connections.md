@@ -1,7 +1,8 @@
 # ADR 0008: PostgreSQL ownership, migrations and connection strategy
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 27 August 2026
+- **Accepted:** 27 August 2026 by Mkhuphuli, Tech Lead
 - **Decision owner:** Data architect
 - **Reviewers:** BIG backend lead; InfluenceHub lead; DevOps lead; security reviewer
 - **Source:** Accepted NorthStar Architecture Decision Register, section 7
@@ -41,12 +42,11 @@ Create connection-budget calculations, migration pipelines, backup gates and rol
 
 ## Acceptance checks
 
-- Prove PostgreSQL 18 container and Cloud SQL compatibility.
-- Approve schema ownership and role grants.
-- Demonstrate overlapping-revision connection safety.
-- Exercise expand/contract and rollback in staging.
+- PostgreSQL 18 container compatibility is verified; verify Cloud SQL compatibility during cloud-environment provisioning.
+- Before the first migrations, approve schema ownership and role grants.
+- Before deployment, demonstrate connection-budget safety with overlapping revisions.
+- Before production schema changes, exercise expand/contract and rollback in staging.
 
 ## Review triggers
 
 Review on measured connection pressure, PostgreSQL incompatibility, cross-schema ownership changes or migration failure evidence.
-

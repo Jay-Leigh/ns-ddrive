@@ -330,8 +330,10 @@ Do not activate a Deferred item merely because it is common in other systems.
 ## 17. Current artefacts
 
 - `NorthStar_Architecture_Decision_Register.md` — Accepted checkpoint and governing decision register.
-- `NorthStar_Foundation_ADR_Pack.zip` — 13 repository-ready Proposed foundation ADRs.
+- `docs/architecture/decisions/` — six Accepted ADRs (0002, 0006, 0007, 0008, 0012 and 0014) and eight Proposed foundation ADRs requiring their own triggered reviews.
 - `NorthStar_Project_Seed.md` — this active implementation handoff; it supersedes the old BIG seed.
+- `BIG_Frontend_Architecture_and_Development_Standards.md` — Accepted frontend standard derived from the accepted register and applicable Accepted ADRs.
+- `docs/contracts/NorthStar_API_Contract_Register.md` — Proposed register containing ten traceable J0/J1 contract entries; confirmation remains pending.
 - BIG Git/release documents incorporated into the repository:
   - `docs/agile/deliverables/internal/BIG Git and Release Implementation Guide.md`
   - `docs/agile/deliverables/internal/BIG October 2026 Release Plan.md`
@@ -340,15 +342,17 @@ Do not activate a Deferred item merely because it is common in other systems.
 
 1. ~~Confirm repository name, ownership boundary and application structure.~~ **Completed in the accepted checkpoint.**
 2. ~~Validate foundation runtime versions and GCP service regions.~~ **Completed 27 August 2026; repeat during locked builds and before production.**
-3. ~~Prepare foundation ADRs.~~ **Proposed ADR pack completed; acceptance checks and approval remain.**
+3. ~~Prepare foundation ADRs.~~ **Completed; ADRs 0002, 0006, 0007, 0008 and 0012 were accepted on 27 August 2026, and ADR 0014 was accepted on 30 August 2026. The remaining eight ADRs stay Proposed until their implementation trigger and review.**
 4. ~~Create the private `northstar` Git repository and insert the ADR pack under `docs/architecture/decisions/`.~~ **Completed 27 August 2026.**
-5. Add root README, ignore rules, contribution guidance, CODEOWNERS and ownership notices.
-6. Configure pinned runtimes, pnpm workspace, `uv`, locks and local PostgreSQL tooling.
-7. Establish formatting, linting, typing, secret detection and test foundations.
-8. Write the BIG Frontend Architecture and Development Standards.
-9. Create the API contract register and first J0–J1 contracts.
-10. Scaffold the three applications without feature business logic.
-11. Establish CI, protected branches and preview/develop environments.
+5. ~~Add root README, ignore rules, contribution guidance, CODEOWNERS and ownership notices.~~ **Completed 27 August 2026.**
+6. ~~Configure pinned runtimes, pnpm workspace, `uv`, locks and local PostgreSQL tooling.~~ **Completed. Runtime targets, pnpm/Turborepo workspace boundaries, frozen JavaScript lock and local PostgreSQL Compose configuration were added 27 August 2026. Node 24.20.0 and pnpm 11.23.0 were verified locally through NVM for Windows and Corepack. Python 3.14.7 and `uv` 0.12.6 were verified locally, PostgreSQL 18.4 was verified in an isolated container, and the first frozen Python workspace lock was generated and verified during backend scaffolding on 30 August 2026.**
+7. ~~Establish formatting, linting, typing, secret detection and test foundations.~~ **Completed 28 August 2026 at repository level with Prettier, type-aware ESLint, strict TypeScript, Vitest, Secretlint, staged-file pre-commit checks, a complete pre-push gate and the same complete CI gate. Application-specific coverage and browser/component gates remain implementation-triggered during application scaffolding. Python Ruff, mypy and pytest activation remains triggered by the backend manifest.**
+8. ~~Write and review the BIG Frontend Architecture and Development Standards.~~ **Accepted 27 August 2026; the Tailwind CSS v4, semantic-token, selective CSS Modules/Radix styling baseline was accepted in ADR 0014 on 30 August 2026.**
+9. Create the API contract register and first J0–J1 contracts. **Proposed register and ten traceable J0/J1 contract entries drafted 27 August 2026; open questions and formal confirmation remain.**
+10. ~~Scaffold the three applications without feature business logic.~~ **Completed 30 August 2026. The separate staff and client-review Next.js foundations, Tailwind v4 semantic-token baseline and FastAPI backend foundation have application-specific formatting, linting, strict typing, builds where applicable, tests and coverage gates. The backend publishes operational health endpoints only; it has no authentication, authorisation, database schema, migration revision, BFF operation or J0/J1 business endpoint.**
+11. Establish CI, protected branches and preview/develop environments. **CI and team-based protection of `main` and `develop` were completed 30 August 2026. GitHub deployment environments remain implementation-triggered by the approved hosting and deployment workflows.**
 12. Implement release-critical vertical slices from Confirmed contracts.
 
 Do not scaffold major framework, security, data or infrastructure choices without the corresponding accepted register entry or ADR. Preserve Deferred items until their triggers occur.
+
+Frontend scaffolding compatibility note: Next.js `16.3.3` accepts ESLint 9 or later, but its current `eslint-plugin-react` dependency fails against the ESLint 10 rule API. Pin ESLint and `@eslint/js` to `9.39.5` for the scaffold and review the pin when the Next.js lint dependency set declares and demonstrates ESLint 10 compatibility.
